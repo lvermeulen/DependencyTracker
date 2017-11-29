@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ShellProgressBar" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
+    <ProjectReference Include="..\Dependency.Loader\Dependency.Loader.csproj" />
+    <ProjectReference Include="..\Dependency.Reader\Dependency.Reader.csproj" />
+    <ProjectReference Include="..\Dependency.Writer\Dependency.Writer.csproj" />
+  </ItemGroup>
+
+</Project>
