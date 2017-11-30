@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Dependency.Writer.Models
+namespace Dependency.Writer
 {
     [Table("project")]
     public class Project

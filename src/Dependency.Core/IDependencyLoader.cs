@@ -1,5 +1,6 @@
 ﻿namespace Dependency.Core
-{    public interface IDependencyLoader
+{
+    public interface IDependencyLoader
     {
         string Load();
     }

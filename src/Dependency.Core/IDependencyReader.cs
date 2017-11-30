@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Dependency.Core
 {
     public interface IDependencyReader
     {
-        IEnumerable<Models.Dependency> GetDependencies(string projectName, string fileName);
+        int Count { get; }
+
+        IEnumerable<Dependency> Read(Action progress = null);
     }
 }

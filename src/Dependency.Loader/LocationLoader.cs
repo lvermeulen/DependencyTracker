@@ -1,7 +1,8 @@
 ﻿using Dependency.Core;
 
 namespace Dependency.Loader
-{    public class LocationLoader : IDependencyLoader
+{
+    public class LocationLoader : IDependencyLoader
     {
         private readonly string _location;
 

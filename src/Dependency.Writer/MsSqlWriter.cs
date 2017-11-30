@@ -4,9 +4,6 @@ using System.Linq;
 using BulkWriter;
 using Dapper;
 using Dependency.Core;
-using Dependency.Core.Models;
-using Project = Dependency.Writer.Models.Project;
-using ProjectDependency = Dependency.Writer.Models.ProjectDependency;
 
 namespace Dependency.Writer
 {    public class MsSqlWriter : IDependencyWriter
@@ -25,21 +22,23 @@ namespace Dependency.Writer
             connection.Execute("delete from projectdependency");
         }
 
-        public void Write(RunResult runResult)
+        public void Write(IEnumerable<Core.Dependency> dependencies)
         {
-            var projectMap = WriteProjects(runResult);
-            WriteProjectDependencies(runResult, projectMap);
+            var dependencyList = dependencies.ToList();
+            var projectMap = WriteProjects(dependencyList);
+            WriteProjectDependencies(dependencyList, projectMap);
         }
 
-        private IDictionary<string, int> WriteProjects(RunResult runResult)
+        private IDictionary<string, int> WriteProjects(List<Core.Dependency> dependencies)
         {
             var projectIntCounter = new IntCounter(-1);
-            var projects = runResult
-                .Projects
+            var projects = dependencies
+                .SelectMany(x => new List<string> { x.ProjectName, x.DependencyId })
+                .Distinct()
                 .Select(x => new Project
                 {
                     Id = projectIntCounter.Next(),
-                    Name = x.Name
+                    Name = x
                 })
                 .ToList();
 
@@ -51,18 +50,17 @@ namespace Dependency.Writer
             return projects.ToDictionary(x => x.Name, x => x.Id);
         }
 
-        private void WriteProjectDependencies(RunResult runResult, IDictionary<string, int> projectMap)
+        private void WriteProjectDependencies(List<Core.Dependency> dependencies, IDictionary<string, int> projectMap)
         {
             var projectDependencyIntCounter = new IntCounter(-1);
-            var projectDependencies = runResult
-                .ProjectDependencies
+            var projectDependencies = dependencies
                 .Select(x => new ProjectDependency
                 {
                     Id = projectDependencyIntCounter.Next(),
-                    ProjectFromId = projectMap[x.From],
-                    ProjectToId = projectMap[x.To],
-                    Version = x.Version,
-                    TargetFramework = x.TargetFramework
+                    ProjectFromId = projectMap[x.ProjectName],
+                    ProjectToId = projectMap[x.DependencyId],
+                    Version = x.DependencyVersion,
+                    TargetFramework = x.DependencyFramework
                 });
 
             using (var bulkWriter = new BulkWriter<ProjectDependency>(_connectionString))

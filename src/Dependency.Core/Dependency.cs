@@ -1,4 +1,4 @@
-﻿namespace Dependency.Core.Models
+﻿namespace Dependency.Core
 {
     public class Dependency
     {
