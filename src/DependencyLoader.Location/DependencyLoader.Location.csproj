@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+    <Authors>Luk Vermeulen</Authors>
+    <Company />
+    <Product />
+    <Copyright>Copyright 2017 by Luk Vermeulen. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://github.com/lvermeulen/DependencyTracker/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/lvermeulen/DependencyTracker</PackageProjectUrl>
+    <PackageIconUrl>https://i.imgur.com/tiDW0wD.png?1</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
