@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependency.Loader", "src\De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependency.Writer", "src\Dependency.Writer\Dependency.Writer.csproj", "{82DA6647-301B-4937-BFAA-535032760FB2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02A301B6-837A-4DBB-8E01-7EDFAAAB53C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependency.Reader.Tests", "test\Dependency.Reader.Tests\Dependency.Reader.Tests.csproj", "{FF97135D-7D42-428D-8A27-9D21914A5F8E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,15 +39,9 @@ Global
 		{82DA6647-301B-4937-BFAA-535032760FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82DA6647-301B-4937-BFAA-535032760FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82DA6647-301B-4937-BFAA-535032760FB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF97135D-7D42-428D-8A27-9D21914A5F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF97135D-7D42-428D-8A27-9D21914A5F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF97135D-7D42-428D-8A27-9D21914A5F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{FF97135D-7D42-428D-8A27-9D21914A5F8E} = {02A301B6-837A-4DBB-8E01-7EDFAAAB53C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B95C67B7-FD2C-46B7-9743-DF96F220E49B}
