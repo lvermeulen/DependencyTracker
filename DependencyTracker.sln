@@ -15,6 +15,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyReader.NuGet", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Mssql", "src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj", "{991786B7-58E3-456C-A5C1-90D51DFD919A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{EDE6823E-37D8-4A15-BD82-6BCA8FB31AF2}"
+	ProjectSection(SolutionItems) = preProject
+		build\build.ps1 = build\build.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE6EC6C0-BE23-479D-B418-CA6D912BC2E4}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
