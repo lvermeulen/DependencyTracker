@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using CommandLine;
 using Dependency.Core;
 using Dependency.Loader;
 using Dependency.Reader;
@@ -11,23 +13,55 @@ namespace DependencyTracker.Console
     {
         public static void Main(string[] args)
         {
-            var loader = new LocationLoader("E:\\bbrepo");
-            string path = loader.Load();
-
-            var reader = new NuGetReader(path);
-            IEnumerable<Dependency.Core.Dependency> dependencies;
-            using (var progressBar = new ProgressBar(reader.Count, "Reading dependencies"))
+            // parse
+            var options = new Options();
+            Parser.Default.ParseArguments(() => new Options(), args)
+                .WithParsed(x => options = x);
+            if (options.Path == null || options.ConnectionString == null)
             {
-                dependencies = reader.Read(() => progressBar.Tick());
+                if (!options.Silent)
+{
+                    DisplayUsage();
+                }
+
+                Environment.Exit(1);
             }
 
-            var writer = new MsSqlWriter("Server=OB07SQL01;Database=Dependencies;User Id=dotnet;Password=domoware;");
-            Write(writer, dependencies);
+            // load
+            var loader = new LocationLoader(options.Path);
+            string path = loader.Load();
 
-            System.Console.WriteLine($"{reader.Count} dependencies updated");
-#if DEBUG
-            System.Console.ReadLine();
-#endif
+            using (var progressBar = options.Silent ? null : new ProgressBar(1, "", new ProgressBarOptions { ForegroundColor = ConsoleColor.Gray, ProgressCharacter = '-' }))
+            {
+                // read
+                if (progressBar != null)
+                {
+                    progressBar.Message = "Thinking";
+                }
+                var reader = new NuGetReader(path);
+
+                if (progressBar != null)
+                {
+                    progressBar.MaxTicks = reader.Count;
+                    progressBar.Message = "Reading dependencies";
+                }
+                var dependencies = reader.Read(() => { progressBar?.Tick(); });
+
+                // write
+                if (progressBar != null)
+                {
+                    progressBar.Message = "Writing";
+                }
+                var writer = new MsSqlWriter(options.ConnectionString);
+                Write(writer, dependencies);
+
+                // close
+                if (progressBar != null)
+                {
+                    System.Console.Clear();
+                    System.Console.WriteLine($"{reader.Count} dependencies updated");
+                }
+            }
         }
 
         private static void Write(IDependencyWriter writer, IEnumerable<Dependency.Core.Dependency> dependencies)
@@ -35,6 +69,11 @@ namespace DependencyTracker.Console
             writer.PreWrite();
             writer.Write(dependencies);
             writer.PostWrite();
+        }
+
+        private static void DisplayUsage()
+        {
+            System.Console.WriteLine("Usage: DependencyTracker.Console --path=<root folder to search> --connectionString=<database connection string>");
         }
     }
 }
