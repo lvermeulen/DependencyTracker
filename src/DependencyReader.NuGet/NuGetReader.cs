@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Dependency.Core;
 
-namespace NuGetReader
+namespace DependencyReader.NuGet
 {
     public class NuGetReader : IDependencyReader
     {

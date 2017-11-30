@@ -1,6 +1,6 @@
 ﻿using Dependency.Core;
 
-namespace LocationLoader
+namespace DependencyLoader.Location
 {
     public class LocationLoader : IDependencyLoader
     {
@@ -11,9 +11,19 @@ namespace LocationLoader
             _location = location;
         }
 
+        public void PreLoad()
+        {
+            // nothing to do
+        }
+
         public string Load()
         {
             return _location;
+        }
+
+        public void PostLoad()
+        {
+            // nothing to do
         }
     }
 }

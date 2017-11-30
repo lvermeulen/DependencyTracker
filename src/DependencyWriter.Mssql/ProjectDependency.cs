@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MsSqlWriter
+namespace DependencyWriter.Mssql
 {
     [Table("projectdependency")]
     public class ProjectDependency

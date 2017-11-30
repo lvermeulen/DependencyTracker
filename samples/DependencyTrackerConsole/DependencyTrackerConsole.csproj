@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Dependency.Core\Dependency.Core.csproj" />
+    <ProjectReference Include="..\..\src\DependencyLoader.Location\DependencyLoader.Location.csproj" />
+    <ProjectReference Include="..\..\src\DependencyReader.NuGet\DependencyReader.NuGet.csproj" />
+    <ProjectReference Include="..\..\src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -5,13 +5,13 @@ using BulkWriter;
 using Dapper;
 using Dependency.Core;
 
-namespace MsSqlWriter
+namespace DependencyWriter.Mssql
 {
-    public class MsSqlWriter : IDependencyWriter
+    public class MssqlWriter : IDependencyWriter
     {
         private readonly string _connectionString;
 
-        public MsSqlWriter(string connectionString)
+        public MssqlWriter(string connectionString)
         {
             _connectionString = connectionString;
         }

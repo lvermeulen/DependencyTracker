@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace DependencyTracker.Console
+namespace DependencyTrackerConsole
 {
     public class Options
     {

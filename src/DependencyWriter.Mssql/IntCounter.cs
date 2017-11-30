@@ -1,4 +1,4 @@
-﻿namespace MsSqlWriter
+﻿namespace DependencyWriter.Mssql
 {
     public class IntCounter
     {
