@@ -12,9 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
-    <ProjectReference Include="..\Dependency.Loader\Dependency.Loader.csproj" />
-    <ProjectReference Include="..\Dependency.Reader\Dependency.Reader.csproj" />
-    <ProjectReference Include="..\Dependency.Writer\Dependency.Writer.csproj" />
+    <ProjectReference Include="..\LocationLoader\LocationLoader.csproj" />
+    <ProjectReference Include="..\MsSqlWriter\MsSqlWriter.csproj" />
+    <ProjectReference Include="..\NuGetReader\NuGetReader.csproj" />
   </ItemGroup>
 
 </Project>

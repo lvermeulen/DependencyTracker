@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using CommandLine;
 using Dependency.Core;
-using Dependency.Loader;
-using Dependency.Reader;
-using Dependency.Writer;
 using ShellProgressBar;
 
 namespace DependencyTracker.Console
@@ -28,7 +25,7 @@ namespace DependencyTracker.Console
             }
 
             // load
-            var loader = new LocationLoader(options.Path);
+            var loader = new LocationLoader.LocationLoader(options.Path);
             string path = loader.Load();
 
             using (var progressBar = options.Silent ? null : new ProgressBar(1, "", new ProgressBarOptions { ForegroundColor = ConsoleColor.Gray, ProgressCharacter = '-' }))
@@ -38,7 +35,7 @@ namespace DependencyTracker.Console
                 {
                     progressBar.Message = "Thinking";
                 }
-                var reader = new NuGetReader(path);
+                var reader = new NuGetReader.NuGetReader(path);
 
                 if (progressBar != null)
                 {
@@ -52,7 +49,7 @@ namespace DependencyTracker.Console
                 {
                     progressBar.Message = "Writing";
                 }
-                var writer = new MsSqlWriter(options.ConnectionString);
+                var writer = new MsSqlWriter.MsSqlWriter(options.ConnectionString);
                 Write(writer, dependencies);
 
                 // close

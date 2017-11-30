@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Dependency.Core;
 
-namespace Dependency.Reader
+namespace NuGetReader
 {
     public class NuGetReader : IDependencyReader
     {
@@ -19,9 +19,9 @@ namespace Dependency.Reader
             Count = _fileInfos.Count();
         }
 
-        public IEnumerable<Core.Dependency> Read(Action progress = null)
+        public IEnumerable<Dependency.Core.Dependency> Read(Action progress = null)
         {
-            var results = new List<Core.Dependency>();
+            var results = new List<Dependency.Core.Dependency>();
 
             foreach (var fileInfo in _fileInfos)
             {
@@ -52,7 +52,7 @@ namespace Dependency.Reader
             return assemblyName;
         }
 
-        private IEnumerable<Core.Dependency> GetDependencies(string projectName, string fileName, Action progress = null)
+        private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, string fileName, Action progress = null)
         {
             //
             // file is packages.config
@@ -62,7 +62,7 @@ namespace Dependency.Reader
             var results = doc
                 .Element("packages")
                 ?.Elements("package")
-                .Select(x => new Core.Dependency
+                .Select(x => new Dependency.Core.Dependency
                 {
                     ProjectName = projectName,
                     DependencyId = x?.Attribute("id")?.Value,
