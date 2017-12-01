@@ -59,7 +59,7 @@ namespace DependencyLoader.Git
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     FileName = _config.PathToGit ?? @"C:\Program Files\Git\bin\git.exe",
-                    Arguments = $"clone {repositoryCloneUrl} {targetFolder}",
+                    Arguments = $"clone {repositoryCloneUrl} {targetFolder} --depth 1",
                     CreateNoWindow = false
                 };
 
