@@ -10,7 +10,7 @@ namespace DependencyLoader.Git
     {
         private readonly GitConfig _config;
 
-        public bool Success { get; set; }
+        public bool Success { get; }
         public string Location { get; }
 
         public GitLoader(GitConfig config)
