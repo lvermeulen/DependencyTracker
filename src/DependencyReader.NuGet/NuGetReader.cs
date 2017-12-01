@@ -26,6 +26,11 @@ namespace DependencyReader.NuGet
             foreach (var fileInfo in _fileInfos)
             {
                 string projectName = GetProjectName(fileInfo.Directory);
+                if (projectName == null)
+                {
+                    return Enumerable.Empty<Dependency.Core.Dependency>();
+                }
+
                 var dependencies = GetDependencies(projectName, fileInfo.FullName, progress).ToList();
 
                 results.AddRange(dependencies);
@@ -40,6 +45,10 @@ namespace DependencyReader.NuGet
                 .EnumerateFiles("*.??proj", SearchOption.TopDirectoryOnly)
                 .FirstOrDefault()
                 ?.FullName;
+            if (firstProjectFileName == null)
+            {
+                return null;
+            }
 
             var doc = XDocument.Load(firstProjectFileName);
             var xmlns = doc.Root?.Name.Namespace;
@@ -47,7 +56,8 @@ namespace DependencyReader.NuGet
                 .Element(xmlns + "Project")
                 ?.Elements(xmlns + "PropertyGroup")
                 .Elements(xmlns + "AssemblyName")
-                .FirstOrDefault(x => x != null)?.Value;
+                .FirstOrDefault(x => x != null)
+                ?.Value;
 
             return assemblyName;
         }
