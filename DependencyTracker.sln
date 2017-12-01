@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyLoader.Git", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Console", "src\DependencyWriter.Console\DependencyWriter.Console.csproj", "{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Json", "src\DependencyWriter.Json\DependencyWriter.Json.csproj", "{C3828B83-2B3C-4608-8507-B01B82F8191B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3828B83-2B3C-4608-8507-B01B82F8191B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3828B83-2B3C-4608-8507-B01B82F8191B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3828B83-2B3C-4608-8507-B01B82F8191B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3828B83-2B3C-4608-8507-B01B82F8191B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
