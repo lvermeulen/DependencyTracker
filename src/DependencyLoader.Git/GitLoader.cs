@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Dependency.Core;
@@ -24,7 +23,7 @@ namespace DependencyLoader.Git
 
             foreach (string repositoryCloneUrl in _config.RepositoryCloneUrls)
             {
-                (bool success, string output) = CloneRepository(repositoryCloneUrl);
+                (bool success, string _) = CloneRepository(repositoryCloneUrl);
                 if (!success)
                 {
                     return;
@@ -51,9 +50,9 @@ namespace DependencyLoader.Git
             var repositoryUri = new Uri(repositoryCloneUrl);
             string targetFolder = Path.Combine(_config.CloneBaseFolder, StripInvalidChars(repositoryUri.LocalPath));
 
-            using (var process = new Process())
+            using (var process = new System.Diagnostics.Process())
             {
-                process.StartInfo = new ProcessStartInfo()
+                process.StartInfo = new System.Diagnostics.ProcessStartInfo()
                 {
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
