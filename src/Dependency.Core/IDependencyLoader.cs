@@ -1,9 +1,10 @@
-﻿namespace Dependency.Core
+﻿using System;
+
+namespace Dependency.Core
 {
-    public interface IDependencyLoader
+    public interface IDependencyLoader : IDisposable
     {
-        void PreLoad();
-        string Load();
-        void PostLoad();
+        bool Success { get; }
+        string Location { get; }
     }
 }

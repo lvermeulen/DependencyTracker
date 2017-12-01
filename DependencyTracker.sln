@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyReader.NuGet", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Mssql", "src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj", "{991786B7-58E3-456C-A5C1-90D51DFD919A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyLoader.Git", "src\DependencyLoader.Git\DependencyLoader.Git.csproj", "{15DE6B46-3F9C-4DC1-87DD-B888B400B34B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{991786B7-58E3-456C-A5C1-90D51DFD919A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{991786B7-58E3-456C-A5C1-90D51DFD919A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{991786B7-58E3-456C-A5C1-90D51DFD919A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DE6B46-3F9C-4DC1-87DD-B888B400B34B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DE6B46-3F9C-4DC1-87DD-B888B400B34B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DE6B46-3F9C-4DC1-87DD-B888B400B34B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DE6B46-3F9C-4DC1-87DD-B888B400B34B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

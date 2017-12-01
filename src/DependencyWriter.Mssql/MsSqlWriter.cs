@@ -16,15 +16,13 @@ namespace DependencyWriter.Mssql
             _connectionString = connectionString;
         }
 
-        public void PreWrite()
+        public void Write(IEnumerable<Dependency.Core.Dependency> dependencies)
         {
+            // empty target tables
             var connection = new SqlConnection(_connectionString);
             connection.Execute("delete from project");
             connection.Execute("delete from projectdependency");
-        }
 
-        public void Write(IEnumerable<Dependency.Core.Dependency> dependencies)
-        {
             var dependencyList = dependencies.ToList();
             var projectMap = WriteProjects(dependencyList);
             WriteProjectDependencies(dependencyList, projectMap);
@@ -68,11 +66,6 @@ namespace DependencyWriter.Mssql
             {
                 bulkWriter.WriteToDatabase(projectDependencies);
             }
-        }
-
-        public void PostWrite()
-        {
-            // nothing to do
         }
     }
 }

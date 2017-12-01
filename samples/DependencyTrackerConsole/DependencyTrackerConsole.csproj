@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.0</TargetFramework>
+    <StartupObject>DependencyTrackerConsole.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Dependency.Core\Dependency.Core.csproj" />
+    <ProjectReference Include="..\..\src\DependencyLoader.Git\DependencyLoader.Git.csproj" />
     <ProjectReference Include="..\..\src\DependencyLoader.Location\DependencyLoader.Location.csproj" />
     <ProjectReference Include="..\..\src\DependencyReader.NuGet\DependencyReader.NuGet.csproj" />
     <ProjectReference Include="..\..\src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj" />

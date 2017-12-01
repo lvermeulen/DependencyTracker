@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using CommandLine;
-using Dependency.Core;
-using DependencyLoader.Location;
+using DependencyLoader.Git;
 using DependencyReader.NuGet;
 using DependencyWriter.Mssql;
 
@@ -10,23 +9,39 @@ namespace DependencyTrackerConsole
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var options = ParseCommandLine(args);
 
+            string clonePath = options.ClonePath;
+            var cloneUrls = File.ReadAllLines(options.CloneUrlsFile);
+
             // load
-            var loader = new LocationLoader(options.Path);
-            string path = loader.Load();
+            var gitConfig = new GitConfig
+            {
+                CloneBaseFolder = clonePath,
+                UserName = options.UserName,
+                Password = options.Password,
+                RepositoryCloneUrls = cloneUrls
+            };
+            using (var loader = new GitLoader(gitConfig))
+            {
+                if (!loader.Success)
+                {
+                    return 1;
+                }
 
-            // read
-            var reader = new NuGetReader(path);
-            var dependencies = reader.Read();
+                // read
+                var reader = new NuGetReader(loader.Location);
+                var dependencies = reader.Read();
 
-            // write
-            var writer = new MssqlWriter(options.ConnectionString);
-            Write(writer, dependencies);
+                // write
+                var writer = new MssqlWriter(options.ConnectionString);
+                writer.Write(dependencies);
 
-            Console.WriteLine($"{reader.Count} dependencies updated");
+                Console.WriteLine($"{reader.Count} files read");
+                return 0;
+            }
         }
 
         private static Options ParseCommandLine(string[] args)
@@ -34,7 +49,7 @@ namespace DependencyTrackerConsole
             var options = new Options();
             Parser.Default.ParseArguments(() => new Options(), args)
                 .WithParsed(x => options = x);
-            if (options.Path == null || options.ConnectionString == null)
+            if (options.ConnectionString == null)
             {
                 if (!options.Silent)
                 {
@@ -45,13 +60,6 @@ namespace DependencyTrackerConsole
             }
 
             return options;
-        }
-
-        private static void Write(IDependencyWriter writer, IEnumerable<Dependency.Core.Dependency> dependencies)
-        {
-            writer.PreWrite();
-            writer.Write(dependencies);
-            writer.PostWrite();
         }
 
         private static void DisplayUsage()

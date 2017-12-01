@@ -4,24 +4,16 @@ namespace DependencyLoader.Location
 {
     public class LocationLoader : IDependencyLoader
     {
-        private readonly string _location;
+        public bool Success { get; }
+        public string Location { get; }
 
         public LocationLoader(string location)
         {
-            _location = location;
+            Success = true;
+            Location = location;
         }
 
-        public void PreLoad()
-        {
-            // nothing to do
-        }
-
-        public string Load()
-        {
-            return _location;
-        }
-
-        public void PostLoad()
+        public void Dispose()
         {
             // nothing to do
         }
