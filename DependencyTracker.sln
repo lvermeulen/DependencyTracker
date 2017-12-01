@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Console", 
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "WebLayout", "samples\WebLayout\WebLayout.njsproj", "{A21B80BA-8320-440B-979E-3BFCAC3C07E2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Json", "src\DependencyWriter.Json\DependencyWriter.Json.csproj", "{93D1D27D-751C-495A-B7B3-778A9EC6989B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
