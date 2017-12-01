@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
     <Authors>Luk Vermeulen</Authors>
     <Company />
     <Product />
