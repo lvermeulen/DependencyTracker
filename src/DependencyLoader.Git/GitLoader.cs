@@ -41,8 +41,15 @@ namespace DependencyLoader.Git
                 return;
             }
 
-            NormalizeAttributes(_config.CloneBaseFolder);
-            Directory.Delete(_config.CloneBaseFolder, true);
+            try
+            {
+                NormalizeAttributes(_config.CloneBaseFolder);
+                Directory.Delete(_config.CloneBaseFolder, true);
+            }
+            catch
+            {
+                // we don't care about exceptions here
+            }
         }
 
         private (bool, string) CloneRepository(string repositoryCloneUrl)
