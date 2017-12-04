@@ -15,7 +15,7 @@ namespace DependencyReader.NuGet
 
         public NuGetReader(string path)
         {
-            _fileInfos = new DirectoryInfo(path).EnumerateFiles("packages.config", SearchOption.AllDirectories);
+            _fileInfos = new DirectoryInfo(path).EnumerateFiles("*.??proj", SearchOption.AllDirectories);
             Count = _fileInfos.Count();
         }
 
@@ -25,13 +25,13 @@ namespace DependencyReader.NuGet
 
             foreach (var fileInfo in _fileInfos)
             {
-                string projectName = GetProjectName(fileInfo.Directory);
+                string projectName = GetProjectName(fileInfo.FullName);
                 if (projectName == null)
                 {
                     return Enumerable.Empty<Dependency.Core.Dependency>();
                 }
 
-                var dependencies = GetDependencies(projectName, fileInfo.FullName, progress).ToList();
+                var dependencies = GetDependencies(projectName, fileInfo, progress).ToList();
 
                 results.AddRange(dependencies);
             }
@@ -39,18 +39,9 @@ namespace DependencyReader.NuGet
             return results;
         }
 
-        private string GetProjectName(DirectoryInfo directory)
+        private string GetProjectName(string fileName)
         {
-            string firstProjectFileName = directory
-                .EnumerateFiles("*.??proj", SearchOption.TopDirectoryOnly)
-                .FirstOrDefault()
-                ?.FullName;
-            if (firstProjectFileName == null)
-            {
-                return null;
-            }
-
-            var doc = XDocument.Load(firstProjectFileName);
+            var doc = XDocument.Load(fileName);
             var xmlns = doc.Root?.Name.Namespace;
             string assemblyName = doc
                 .Element(xmlns + "Project")
@@ -59,14 +50,39 @@ namespace DependencyReader.NuGet
                 .FirstOrDefault(x => x != null)
                 ?.Value;
 
-            return assemblyName;
+            return assemblyName ?? Path.GetFileNameWithoutExtension(fileName);
         }
 
-        private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, string fileName, Action progress = null)
+        private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
         {
-            //
-            // file is packages.config
-            //
+            var doc = XDocument.Load(fileInfo.FullName);
+            var results = doc
+                .Element("Project")
+                ?.Elements("ItemGroup")
+                .Elements("PackageReference")
+                .Select(x => new Dependency.Core.Dependency
+                {
+                    ProjectName = projectName,
+                    DependencyId = x?.Attribute("Include")?.Value,
+                    DependencyVersion = x?.Attribute("Version")?.Value,
+                    DependencyFramework = null
+                }) ?? GetPackagesConfigDependencies(projectName, fileInfo.Directory);
+
+            progress?.Invoke();
+
+            return results;
+        }
+
+        private IEnumerable<Dependency.Core.Dependency> GetPackagesConfigDependencies(string projectName, DirectoryInfo directory)
+        {
+            string fileName = directory
+                .EnumerateFiles("packages.config", SearchOption.TopDirectoryOnly)
+                .FirstOrDefault()
+                ?.FullName;
+            if (fileName == null)
+            {
+                return Enumerable.Empty<Dependency.Core.Dependency>();
+            }
 
             var doc = XDocument.Load(fileName);
             var results = doc
@@ -79,8 +95,6 @@ namespace DependencyReader.NuGet
                     DependencyVersion = x?.Attribute("version")?.Value,
                     DependencyFramework = x?.Attribute("targetFramework")?.Value
                 });
-
-            progress?.Invoke();
 
             return results;
         }
