@@ -9,7 +9,10 @@ namespace DependencyWriter.Console
         {
             foreach (var dependency in dependencies)
             {
-                System.Console.WriteLine($"Project {dependency.ProjectName} depends on {dependency.DependencyId} version {dependency.DependencyVersion} with target framework {dependency.DependencyFramework}");
+                string targetFramework = dependency.DependencyFramework != null
+                    ? $" with target framework {dependency.DependencyFramework}"
+                    : "";
+                System.Console.WriteLine($"Project {dependency.ProjectName} depends on {dependency.DependencyId} version {dependency.DependencyVersion}{targetFramework}");
             }
         }
     }
