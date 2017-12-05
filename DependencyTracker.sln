@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dependency.Core", "src\Dependency.Core\Dependency.Core.csproj", "{5E877BAE-BE78-4AC6-91FA-C31DD50C8765}"
 EndProject
@@ -29,8 +29,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyLoader.Git", "src\DependencyLoader.Git\DependencyLoader.Git.csproj", "{4D233E6F-C2A5-4772-9C5C-5441CE36C622}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Console", "src\DependencyWriter.Console\DependencyWriter.Console.csproj", "{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}"
-EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "WebLayout", "samples\WebLayout\WebLayout.njsproj", "{A21B80BA-8320-440B-979E-3BFCAC3C07E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Json", "src\DependencyWriter.Json\DependencyWriter.Json.csproj", "{93D1D27D-751C-495A-B7B3-778A9EC6989B}"
 EndProject
@@ -67,10 +65,6 @@ Global
 		{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2883630B-CF32-4E8F-98E1-D2FD5BA3B337}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A21B80BA-8320-440B-979E-3BFCAC3C07E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,7 +75,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{99DE8301-245E-4ED1-B6E2-A94C85ECB72B} = {820142E6-2C1E-4F07-A4AE-58015C343026}
-		{A21B80BA-8320-440B-979E-3BFCAC3C07E2} = {820142E6-2C1E-4F07-A4AE-58015C343026}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B95C67B7-FD2C-46B7-9743-DF96F220E49B}
