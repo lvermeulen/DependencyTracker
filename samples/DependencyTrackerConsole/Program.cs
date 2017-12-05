@@ -24,6 +24,7 @@ namespace DependencyTrackerConsole
                 Password = options.Password,
                 RepositoryCloneUrls = cloneUrls
             };
+            Console.WriteLine($"Starting git clone operation on {cloneUrls.Length} repositories...");
             using (var loader = new GitLoader(gitConfig))
             {
                 if (!loader.Success)
@@ -33,15 +34,19 @@ namespace DependencyTrackerConsole
 
                 // read
                 var reader = new NuGetReader(loader.Location);
+                Console.WriteLine($"Reading dependencies for {reader.Count} projects...");
                 var dependencies = reader.Read();
 
                 // write
+                Console.WriteLine("Writing dependencies to database...");
                 var writer = new MssqlWriter(options.ConnectionString);
                 writer.Write(dependencies);
 
-                Console.WriteLine($"{reader.Count} files read");
-                return 0;
+                Console.WriteLine("Cleaning up...");
             }
+
+            Console.WriteLine("Done.");
+            return 0;
         }
 
         private static Options ParseCommandLine(string[] args)
