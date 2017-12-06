@@ -35,9 +35,6 @@
     <Reference Include="FluentCommandLineParser, Version=1.5.0.20, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentCommandLineParser.1.5.0.20-commands\lib\net35\FluentCommandLineParser.dll</HintPath>
     </Reference>
-    <Reference Include="Kurukuru, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Kurukuru.1.0.0\lib\netstandard2.0\Kurukuru.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

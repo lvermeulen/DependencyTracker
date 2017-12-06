@@ -4,7 +4,6 @@ using DependencyLoader.Git;
 using DependencyReader.NuGet;
 using DependencyWriter.Mssql;
 using Fclp;
-using Kurukuru;
 
 namespace DependencyTrackerConsole
 {
@@ -26,41 +25,29 @@ namespace DependencyTrackerConsole
                 RepositoryCloneUrls = cloneUrls
             };
 
-            int result = 0;
-            Spinner.Start($"Starting git clone operation on {cloneUrls.Length} repositories...", spinner =>
+            Console.WriteLine($"Starting git clone operation on {cloneUrls.Length} repositories...");
+            using (var loader = new GitLoader(gitConfig))
             {
-                using (var loader = new GitLoader(gitConfig))
+                if (!loader.Success)
                 {
-                    if (loader.Success)
-                    {
-                        spinner.Succeed();
-                    }
-                    else
-                    {
-                        result = 1;
-                        return;
-                    }
-
-                    // read
-                    var reader = new NuGetReader(loader.Location);
-                    spinner.Text = $"Reading dependencies for {reader.Count} projects...";
-                    var dependencies = reader.Read();
-                    spinner.Succeed();
-
-                    // write
-                    spinner.Text = "Writing dependencies to database...";
-                    var writer = new MssqlWriter(options.ConnectionString);
-                    writer.Write(dependencies);
-                    spinner.Succeed();
-
-                    spinner.Text = "Cleaning up...";
+                    return 1;
                 }
 
-                spinner.Succeed();
-                spinner.Text = "Done.";
-            });
+                // read
+                var reader = new NuGetReader(loader.Location);
+                Console.WriteLine($"Reading dependencies for {reader.Count} projects...");
+                var dependencies = reader.Read();
 
-            return result;
+                // write
+                Console.WriteLine("Writing dependencies to database...");
+                var writer = new MssqlWriter(options.ConnectionString);
+                writer.Write(dependencies);
+
+                Console.WriteLine("Cleaning up...");
+            }
+
+            Console.WriteLine("Done.");
+            return 0;
         }
 
         private static Options ParseCommandLine(string[] args)
