@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dependency.Core", "src\Depe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{820142E6-2C1E-4F07-A4AE-58015C343026}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTrackerConsole", "samples\DependencyTrackerConsole\DependencyTrackerConsole.csproj", "{99DE8301-245E-4ED1-B6E2-A94C85ECB72B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyLoader.Location", "src\DependencyLoader.Location\DependencyLoader.Location.csproj", "{1CC7B9FA-43EC-4500-B71B-CBEA7CEB1D7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyReader.NuGet", "src\DependencyReader.NuGet\DependencyReader.NuGet.csproj", "{1380F947-8CD5-438A-9E5E-248B3B90E773}"
@@ -32,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Console", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Json", "src\DependencyWriter.Json\DependencyWriter.Json.csproj", "{93D1D27D-751C-495A-B7B3-778A9EC6989B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyTrackerConsole", "samples\DependencyTrackerConsole\DependencyTrackerConsole.csproj", "{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,9 +42,6 @@ Global
 		{5E877BAE-BE78-4AC6-91FA-C31DD50C8765}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E877BAE-BE78-4AC6-91FA-C31DD50C8765}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E877BAE-BE78-4AC6-91FA-C31DD50C8765}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99DE8301-245E-4ED1-B6E2-A94C85ECB72B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99DE8301-245E-4ED1-B6E2-A94C85ECB72B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99DE8301-245E-4ED1-B6E2-A94C85ECB72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CC7B9FA-43EC-4500-B71B-CBEA7CEB1D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1CC7B9FA-43EC-4500-B71B-CBEA7CEB1D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CC7B9FA-43EC-4500-B71B-CBEA7CEB1D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,12 +66,16 @@ Global
 		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93D1D27D-751C-495A-B7B3-778A9EC6989B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{99DE8301-245E-4ED1-B6E2-A94C85ECB72B} = {820142E6-2C1E-4F07-A4AE-58015C343026}
+		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF} = {820142E6-2C1E-4F07-A4AE-58015C343026}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B95C67B7-FD2C-46B7-9743-DF96F220E49B}

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
-using CommandLine;
 using DependencyLoader.Git;
 using DependencyReader.NuGet;
 using DependencyWriter.Mssql;
+using Fclp;
+using Kurukuru;
 
 namespace DependencyTrackerConsole
 {
@@ -24,52 +25,80 @@ namespace DependencyTrackerConsole
                 Password = options.Password,
                 RepositoryCloneUrls = cloneUrls
             };
-            Console.WriteLine($"Starting git clone operation on {cloneUrls.Length} repositories...");
-            using (var loader = new GitLoader(gitConfig))
+
+            int result = 0;
+            Spinner.Start($"Starting git clone operation on {cloneUrls.Length} repositories...", spinner =>
             {
-                if (!loader.Success)
+                using (var loader = new GitLoader(gitConfig))
                 {
-                    return 1;
+                    if (loader.Success)
+                    {
+                        spinner.Succeed();
+                    }
+                    else
+                    {
+                        result = 1;
+                        return;
+                    }
+
+                    // read
+                    var reader = new NuGetReader(loader.Location);
+                    spinner.Text = $"Reading dependencies for {reader.Count} projects...";
+                    var dependencies = reader.Read();
+                    spinner.Succeed();
+
+                    // write
+                    spinner.Text = "Writing dependencies to database...";
+                    var writer = new MssqlWriter(options.ConnectionString);
+                    writer.Write(dependencies);
+                    spinner.Succeed();
+
+                    spinner.Text = "Cleaning up...";
                 }
 
-                // read
-                var reader = new NuGetReader(loader.Location);
-                Console.WriteLine($"Reading dependencies for {reader.Count} projects...");
-                var dependencies = reader.Read();
+                spinner.Succeed();
+                spinner.Text = "Done.";
+            });
 
-                // write
-                Console.WriteLine("Writing dependencies to database...");
-                var writer = new MssqlWriter(options.ConnectionString);
-                writer.Write(dependencies);
-
-                Console.WriteLine("Cleaning up...");
-            }
-
-            Console.WriteLine("Done.");
-            return 0;
+            return result;
         }
 
         private static Options ParseCommandLine(string[] args)
         {
-            var options = new Options();
-            Parser.Default.ParseArguments(() => new Options(), args)
-                .WithParsed(x => options = x);
-            if (options.ConnectionString == null)
-            {
-                if (!options.Silent)
-                {
-                    DisplayUsage();
-                }
+            var parser = new FluentCommandLineParser<Options>();
 
-                Environment.Exit(1);
+            parser.Setup(arg => arg.UserName)
+                .As("userName")
+                .Required();
+
+            parser.Setup(arg => arg.Password)
+                .As("password")
+                .Required();
+
+            parser.Setup(arg => arg.CloneUrlsFile)
+                .As("cloneUrlsFile")
+                .Required();
+
+            parser.Setup(arg => arg.ClonePath)
+                .As("clonePath")
+                .Required();
+
+            parser.Setup(arg => arg.ConnectionString)
+                .As("connectionString")
+                .Required();
+
+            var result = parser.Parse(args);
+            if (result.HasErrors)
+            {
+                DisplayUsage();
             }
 
-            return options;
+            return parser.Object;
         }
 
         private static void DisplayUsage()
         {
-            Console.WriteLine($"Usage: {nameof(DependencyTrackerConsole)} --path=<root folder to search> --connectionString=<database connection string>");
+            Console.WriteLine($"Usage: {nameof(DependencyTrackerConsole)} --userName=<JIRA username> --password=<JIRA password> --cloneUrlsFile=<path to file containing git repo urls to clone> --clonePath=<root location of cloned repos> --connectionString=<database connection string>");
         }
     }
 }

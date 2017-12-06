@@ -1,21 +1,78 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
-    <StartupObject>DependencyTrackerConsole.Program</StartupObject>
+    <RootNamespace>DependencyTrackerConsole</RootNamespace>
+    <AssemblyName>DependencyTrackerConsole</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
+    <Reference Include="FluentCommandLineParser, Version=1.5.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentCommandLineParser.1.5.0.20-commands\lib\net35\FluentCommandLineParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Kurukuru, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Kurukuru.1.0.0\lib\netstandard2.0\Kurukuru.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Dependency.Core\Dependency.Core.csproj" />
-    <ProjectReference Include="..\..\src\DependencyLoader.Git\DependencyLoader.Git.csproj" />
-    <ProjectReference Include="..\..\src\DependencyLoader.Location\DependencyLoader.Location.csproj" />
-    <ProjectReference Include="..\..\src\DependencyReader.NuGet\DependencyReader.NuGet.csproj" />
-    <ProjectReference Include="..\..\src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Dependency.Core\Dependency.Core.csproj">
+      <Project>{5e877bae-be78-4ac6-91fa-c31dd50c8765}</Project>
+      <Name>Dependency.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyLoader.Git\DependencyLoader.Git.csproj">
+      <Project>{4d233e6f-c2a5-4772-9c5c-5441ce36c622}</Project>
+      <Name>DependencyLoader.Git</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyReader.NuGet\DependencyReader.NuGet.csproj">
+      <Project>{1380f947-8cd5-438a-9e5e-248b3b90e773}</Project>
+      <Name>DependencyReader.NuGet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj">
+      <Project>{991786b7-58e3-456c-a5c1-90d51dfd919a}</Project>
+      <Name>DependencyWriter.Mssql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
