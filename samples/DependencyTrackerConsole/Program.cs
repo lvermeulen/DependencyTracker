@@ -85,7 +85,7 @@ namespace DependencyTrackerConsole
 
         private static void DisplayUsage()
         {
-            Console.WriteLine($"Usage: {nameof(DependencyTrackerConsole)} --userName=<JIRA username> --password=<JIRA password> --cloneUrlsFile=<path to file containing git repo urls to clone> --clonePath=<root location of cloned repos> --connectionString=<database connection string>");
+            Console.WriteLine($"Usage: {nameof(DependencyTrackerConsole)} --userName=<git username> --password=<git password> --cloneUrlsFile=<path to file containing git repo urls to clone> --clonePath=<root location of cloned repos> --connectionString=<database connection string>");
             Environment.Exit(1);
         }
     }
