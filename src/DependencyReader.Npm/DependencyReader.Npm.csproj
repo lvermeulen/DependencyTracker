@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
+    <Authors>Luk Vermeulen</Authors>
+    <Company />
+    <Product />
+    <Copyright>Copyright 2017 by Luk Vermeulen. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://github.com/lvermeulen/DependencyTracker/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/lvermeulen/DependencyTracker</PackageProjectUrl>
+    <PackageIconUrl>https://i.imgur.com/tiDW0wD.png?1</PackageIconUrl>
+    <RepositoryUrl>https://github.com/lvermeulen/DependencyTracker</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
+  </ItemGroup>
+
+</Project>

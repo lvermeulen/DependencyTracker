@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dependency.Core", "src\Dependency.Core\Dependency.Core.csproj", "{5E877BAE-BE78-4AC6-91FA-C31DD50C8765}"
 EndProject
@@ -31,6 +31,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyWriter.Json", "src\DependencyWriter.Json\DependencyWriter.Json.csproj", "{93D1D27D-751C-495A-B7B3-778A9EC6989B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyTrackerConsole", "samples\DependencyTrackerConsole\DependencyTrackerConsole.csproj", "{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyReader.Npm", "src\DependencyReader.Npm\DependencyReader.Npm.csproj", "{FF276D4E-5FD9-4B4F-B37F-E37FFBEDD743}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF276D4E-5FD9-4B4F-B37F-E37FFBEDD743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF276D4E-5FD9-4B4F-B37F-E37FFBEDD743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF276D4E-5FD9-4B4F-B37F-E37FFBEDD743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF276D4E-5FD9-4B4F-B37F-E37FFBEDD743}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
