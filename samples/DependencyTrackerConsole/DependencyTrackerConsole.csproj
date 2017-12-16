@@ -68,6 +68,10 @@
       <Project>{4d233e6f-c2a5-4772-9c5c-5441ce36c622}</Project>
       <Name>DependencyLoader.Git</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyReader.Npm\DependencyReader.Npm.csproj">
+      <Project>{ff276d4e-5fd9-4b4f-b37f-e37ffbedd743}</Project>
+      <Name>DependencyReader.Npm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\DependencyReader.NuGet\DependencyReader.NuGet.csproj">
       <Project>{1380f947-8cd5-438a-9e5e-248b3b90e773}</Project>
       <Name>DependencyReader.NuGet</Name>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using DependencyLoader.Git;
+using DependencyReader.Npm;
 using DependencyReader.NuGet;
 using DependencyWriter.Mssql;
 using Fclp;
@@ -34,9 +36,15 @@ namespace DependencyTrackerConsole
                 }
 
                 // read
-                var reader = new NuGetReader(loader.Location);
-                Console.WriteLine($"Reading dependencies for {reader.Count} projects...");
-                var dependencies = reader.Read();
+                var nuGetReader = new NuGetReader(loader.Location);
+                Console.WriteLine($"Reading nuget dependencies for {nuGetReader.Count} projects...");
+                var nugetDependencies = nuGetReader.Read().ToList();
+
+                var npmReader = new NpmReader(loader.Location, new[] { "node_modules" });
+                Console.WriteLine($"Reading npm dependencies for {npmReader.Count} projects...");
+                var npmDependencies = npmReader.Read();
+
+                var dependencies = nugetDependencies.Union(npmDependencies);
 
                 // write
                 Console.WriteLine("Writing dependencies to database...");

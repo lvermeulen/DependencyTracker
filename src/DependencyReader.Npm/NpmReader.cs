@@ -7,13 +7,13 @@ using Newtonsoft.Json;
 
 namespace DependencyReader.Npm
 {
-    public class NuGetReader : IDependencyReader
+    public class NpmReader : IDependencyReader
     {
         private readonly IEnumerable<FileInfo> _fileInfos;
 
         public int Count { get; }
 
-        public NuGetReader(string path)
+        public NpmReader(string path)
         {
             _fileInfos = new DirectoryInfo(path).EnumerateFiles("package.json", SearchOption.AllDirectories);
             Count = _fileInfos.Count();
@@ -44,8 +44,10 @@ namespace DependencyReader.Npm
         private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
         {
             string json = File.ReadAllText(fileInfo.FullName);
-            var results = JsonConvert
-                .DeserializeObject<Dictionary<string, string>>(json)
+            var package = JsonConvert.DeserializeObject<dynamic>(json);
+            Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(package.dependencies.ToString());
+
+            var results = dict
                 .Select(x => new Dependency.Core.Dependency
                 {
                     ProjectName = projectName,
