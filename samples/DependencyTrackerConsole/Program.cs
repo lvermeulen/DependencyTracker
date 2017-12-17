@@ -40,7 +40,7 @@ namespace DependencyTrackerConsole
                 Console.WriteLine($"Reading nuget dependencies for {nuGetReader.Count} projects...");
                 var nugetDependencies = nuGetReader.Read().ToList();
 
-                var npmReader = new NpmReader(loader.Location, new[] { "node_modules" });
+                var npmReader = new NpmReader(loader.Location);
                 Console.WriteLine($"Reading npm dependencies for {npmReader.Count} projects...");
                 var npmDependencies = npmReader.Read();
 
