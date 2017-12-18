@@ -39,7 +39,13 @@ namespace DependencyReader.Npm
             return results;
         }
 
-        private string GetProjectName(FileInfo fileInfo) => fileInfo?.Directory?.Name;
+        private string GetProjectName(FileInfo fileInfo)
+        {
+            string json = File.ReadAllText(fileInfo.FullName);
+            var package = JsonConvert.DeserializeObject<dynamic>(json);
+
+            return Convert.ToString(package.name);
+        }
 
         private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
         {
