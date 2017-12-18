@@ -13,6 +13,8 @@ namespace DependencyTrackerConsole
     {
         public static int Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += (s, a) => { Console.WriteLine($"Unhandled exception: {((Exception)a.ExceptionObject).Message}"); };
+
             var options = ParseCommandLine(args);
 
             string clonePath = options.ClonePath;
