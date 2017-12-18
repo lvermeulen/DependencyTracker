@@ -46,8 +46,12 @@ namespace DependencyReader.Npm
             string json = File.ReadAllText(fileInfo.FullName);
             var package = JsonConvert.DeserializeObject<dynamic>(json);
             string dependenciesNode = Convert.ToString(package.dependencies);
-            Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(dependenciesNode);
+            if (string.IsNullOrEmpty(dependenciesNode))
+            {
+                return Enumerable.Empty<Dependency.Core.Dependency>();
+            }
 
+            Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(dependenciesNode);
             var results = dict
                 .Select(x => new Dependency.Core.Dependency
                 {
