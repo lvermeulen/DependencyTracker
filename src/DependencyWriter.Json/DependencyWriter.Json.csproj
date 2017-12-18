@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
-    <Authors>Luk Vermeulen</Authors>
+    <Authors></Authors>
     <Company />
     <Product />
-    <Copyright>Copyright 2017 by Luk Vermeulen. All rights reserved.</Copyright>
-    <PackageLicenseUrl>https://github.com/lvermeulen/DependencyTracker/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/lvermeulen/DependencyTracker</PackageProjectUrl>
-    <PackageIconUrl>https://i.imgur.com/tiDW0wD.png?1</PackageIconUrl>
-    <RepositoryUrl>https://github.com/lvermeulen/DependencyTracker</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <Copyright></Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType></RepositoryType>
+    <PackageId />
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
