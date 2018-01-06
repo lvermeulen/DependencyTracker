@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Dependency.Core
+namespace DependencyTracker.Core
 {
     public interface IDependencyReader
     {

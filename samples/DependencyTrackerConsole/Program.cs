@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using DependencyLoader.Git;
-using DependencyReader.Npm;
-using DependencyReader.NuGet;
-using DependencyWriter.Mssql;
+using DependencyTracker.GitLoader;
+using DependencyTracker.MssqlWriter;
+using DependencyTracker.NpmReader;
+using DependencyTracker.NuGetReader;
 using Fclp;
 
 namespace DependencyTrackerConsole

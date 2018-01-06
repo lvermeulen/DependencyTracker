@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Dependency.Core;
+using DependencyTracker.Core;
 
-namespace DependencyLoader.Git
+namespace DependencyTracker.GitLoader
 {
     public class GitLoader : IDependencyLoader
     {

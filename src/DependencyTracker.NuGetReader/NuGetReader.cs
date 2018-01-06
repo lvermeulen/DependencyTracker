@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Dependency.Core;
+using DependencyTracker.Core;
 
-namespace DependencyReader.NuGet
+namespace DependencyTracker.NuGetReader
 {
     public class NuGetReader : IDependencyReader
     {
@@ -19,16 +19,16 @@ namespace DependencyReader.NuGet
             Count = _fileInfos.Count();
         }
 
-        public IEnumerable<Dependency.Core.Dependency> Read(Action progress = null)
+        public IEnumerable<Dependency> Read(Action progress = null)
         {
-            var results = new List<Dependency.Core.Dependency>();
+            var results = new List<Dependency>();
 
             foreach (var fileInfo in _fileInfos)
             {
                 string projectName = GetProjectName(fileInfo.FullName);
                 if (projectName == null)
                 {
-                    return Enumerable.Empty<Dependency.Core.Dependency>();
+                    return Enumerable.Empty<Dependency>();
                 }
 
                 var dependencies = GetDependencies(projectName, fileInfo, progress).ToList();
@@ -53,14 +53,14 @@ namespace DependencyReader.NuGet
             return assemblyName ?? Path.GetFileNameWithoutExtension(fileName);
         }
 
-        private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
+        private IEnumerable<Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
         {
             var doc = XDocument.Load(fileInfo.FullName);
             var results = doc
                 .Element("Project")
                 ?.Elements("ItemGroup")
                 .Elements("PackageReference")
-                .Select(x => new Dependency.Core.Dependency
+                .Select(x => new Dependency
                 {
                     ProjectName = projectName,
                     DependencyId = x?.Attribute("Include")?.Value,
@@ -73,7 +73,7 @@ namespace DependencyReader.NuGet
             return results;
         }
 
-        private IEnumerable<Dependency.Core.Dependency> GetPackagesConfigDependencies(string projectName, DirectoryInfo directory)
+        private IEnumerable<Dependency> GetPackagesConfigDependencies(string projectName, DirectoryInfo directory)
         {
             string fileName = directory
                 .EnumerateFiles("packages.config", SearchOption.TopDirectoryOnly)
@@ -81,14 +81,14 @@ namespace DependencyReader.NuGet
                 ?.FullName;
             if (fileName == null)
             {
-                return Enumerable.Empty<Dependency.Core.Dependency>();
+                return Enumerable.Empty<Dependency>();
             }
 
             var doc = XDocument.Load(fileName);
             var results = doc
                 .Element("packages")
                 ?.Elements("package")
-                .Select(x => new Dependency.Core.Dependency
+                .Select(x => new Dependency
                 {
                     ProjectName = projectName,
                     DependencyId = x?.Attribute("id")?.Value,

@@ -14,12 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BulkWriter" Version="1.0.2" />
-    <PackageReference Include="Dapper" Version="1.50.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
+    <ProjectReference Include="..\DependencyTracker.Core\DependencyTracker.Core.csproj" />
   </ItemGroup>
 
 </Project>

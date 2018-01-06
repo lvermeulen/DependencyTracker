@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DependencyLoader.Git
+namespace DependencyTracker.GitLoader
 {
     public class GitConfig
     {

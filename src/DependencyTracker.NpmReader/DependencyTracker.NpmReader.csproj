@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
+    <ProjectReference Include="..\DependencyTracker.Core\DependencyTracker.Core.csproj" />
   </ItemGroup>
 
 </Project>

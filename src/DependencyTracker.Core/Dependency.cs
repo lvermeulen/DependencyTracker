@@ -1,4 +1,4 @@
-﻿namespace Dependency.Core
+﻿namespace DependencyTracker.Core
 {
     public class Dependency
     {

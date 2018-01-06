@@ -60,25 +60,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Dependency.Core\Dependency.Core.csproj">
-      <Project>{5e877bae-be78-4ac6-91fa-c31dd50c8765}</Project>
-      <Name>Dependency.Core</Name>
+    <ProjectReference Include="..\..\src\DependencyTracker.Core\DependencyTracker.Core.csproj">
+      <Project>{eb35e5bc-a8b9-4d4d-8f46-f5d10dd5b58c}</Project>
+      <Name>DependencyTracker.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\DependencyLoader.Git\DependencyLoader.Git.csproj">
-      <Project>{4d233e6f-c2a5-4772-9c5c-5441ce36c622}</Project>
-      <Name>DependencyLoader.Git</Name>
+    <ProjectReference Include="..\..\src\DependencyTracker.GitLoader\DependencyTracker.GitLoader.csproj">
+      <Project>{27befeaf-c092-4687-9930-75aaf1a5536e}</Project>
+      <Name>DependencyTracker.GitLoader</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\DependencyReader.Npm\DependencyReader.Npm.csproj">
-      <Project>{ff276d4e-5fd9-4b4f-b37f-e37ffbedd743}</Project>
-      <Name>DependencyReader.Npm</Name>
+    <ProjectReference Include="..\..\src\DependencyTracker.MssqlWriter\DependencyTracker.MssqlWriter.csproj">
+      <Project>{10ea5432-4a13-4783-a95f-ec90f7930e6e}</Project>
+      <Name>DependencyTracker.MssqlWriter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\DependencyReader.NuGet\DependencyReader.NuGet.csproj">
-      <Project>{1380f947-8cd5-438a-9e5e-248b3b90e773}</Project>
-      <Name>DependencyReader.NuGet</Name>
+    <ProjectReference Include="..\..\src\DependencyTracker.NpmReader\DependencyTracker.NpmReader.csproj">
+      <Project>{07682de4-7bb4-4244-b620-f6ce0380a92c}</Project>
+      <Name>DependencyTracker.NpmReader</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\DependencyWriter.Mssql\DependencyWriter.Mssql.csproj">
-      <Project>{991786b7-58e3-456c-a5c1-90d51dfd919a}</Project>
-      <Name>DependencyWriter.Mssql</Name>
+    <ProjectReference Include="..\..\src\DependencyTracker.NuGetReader\DependencyTracker.NuGetReader.csproj">
+      <Project>{c24bdc52-4828-4039-bef7-8f3068c008de}</Project>
+      <Name>DependencyTracker.NuGetReader</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

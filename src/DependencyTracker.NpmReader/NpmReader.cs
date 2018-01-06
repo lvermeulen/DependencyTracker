@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Dependency.Core;
+using DependencyTracker.Core;
 using Newtonsoft.Json;
 
-namespace DependencyReader.Npm
+namespace DependencyTracker.NpmReader
 {
     public class NpmReader : IDependencyReader
     {
@@ -19,16 +19,16 @@ namespace DependencyReader.Npm
             Count = _fileInfos.Count();
         }
 
-        public IEnumerable<Dependency.Core.Dependency> Read(Action progress = null)
+        public IEnumerable<Dependency> Read(Action progress = null)
         {
-            var results = new List<Dependency.Core.Dependency>();
+            var results = new List<Dependency>();
 
             foreach (var fileInfo in _fileInfos)
             {
                 string projectName = GetProjectName(fileInfo);
                 if (projectName == null)
                 {
-                    return Enumerable.Empty<Dependency.Core.Dependency>();
+                    return Enumerable.Empty<Dependency>();
                 }
 
                 var dependencies = GetDependencies(projectName, fileInfo, progress).ToList();
@@ -47,19 +47,19 @@ namespace DependencyReader.Npm
             return Convert.ToString(package.name);
         }
 
-        private IEnumerable<Dependency.Core.Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
+        private IEnumerable<Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
         {
             string json = File.ReadAllText(fileInfo.FullName);
             var package = JsonConvert.DeserializeObject<dynamic>(json);
             string dependenciesNode = Convert.ToString(package.dependencies);
             if (string.IsNullOrEmpty(dependenciesNode))
             {
-                return Enumerable.Empty<Dependency.Core.Dependency>();
+                return Enumerable.Empty<Dependency>();
             }
 
             Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(dependenciesNode);
             var results = dict
-                .Select(x => new Dependency.Core.Dependency
+                .Select(x => new Dependency
                 {
                     ProjectName = projectName,
                     DependencyId = x.Key,

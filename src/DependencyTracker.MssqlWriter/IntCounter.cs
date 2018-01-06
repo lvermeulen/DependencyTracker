@@ -1,4 +1,4 @@
-﻿namespace DependencyWriter.Mssql
+﻿namespace DependencyTracker.MssqlWriter
 {
     public class IntCounter
     {

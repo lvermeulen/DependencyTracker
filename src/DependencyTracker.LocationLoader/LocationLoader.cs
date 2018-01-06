@@ -1,6 +1,6 @@
-﻿using Dependency.Core;
+﻿using DependencyTracker.Core;
 
-namespace DependencyLoader.Location
+namespace DependencyTracker.LocationLoader
 {
     public class LocationLoader : IDependencyLoader
     {

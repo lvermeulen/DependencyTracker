@@ -3,7 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
     <Authors>Luk Vermeulen</Authors>
-    <Company>Luk Vermeulen</Company>
+    <Company />
+    <Product />
     <Copyright>Copyright 2017 by Luk Vermeulen. All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/lvermeulen/DependencyTracker/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/lvermeulen/DependencyTracker</PackageProjectUrl>
@@ -13,17 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.4'">
-    <PackageReference Include="System.Diagnostics.Process">
-      <Version>4.3.0</Version>
-    </PackageReference>
+    <ProjectReference Include="..\DependencyTracker.Core\DependencyTracker.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,9 +3,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using BulkWriter;
 using Dapper;
-using Dependency.Core;
+using DependencyTracker.Core;
 
-namespace DependencyWriter.Mssql
+namespace DependencyTracker.MssqlWriter
 {
     public class MssqlWriter : IDependencyWriter
     {
@@ -16,7 +16,7 @@ namespace DependencyWriter.Mssql
             _connectionString = connectionString;
         }
 
-        public void Write(IEnumerable<Dependency.Core.Dependency> dependencies)
+        public void Write(IEnumerable<Dependency> dependencies)
         {
             // empty target tables
             var connection = new SqlConnection(_connectionString);
@@ -28,7 +28,7 @@ namespace DependencyWriter.Mssql
             WriteProjectDependencies(dependencyList, projectMap);
         }
 
-        private IDictionary<string, int> WriteProjects(List<Dependency.Core.Dependency> dependencies)
+        private IDictionary<string, int> WriteProjects(List<Dependency> dependencies)
         {
             var projectIntCounter = new IntCounter(-1);
             var projects = dependencies
@@ -49,7 +49,7 @@ namespace DependencyWriter.Mssql
             return projects.ToDictionary(x => x.Name, x => x.Id);
         }
 
-        private void WriteProjectDependencies(List<Dependency.Core.Dependency> dependencies, IDictionary<string, int> projectMap)
+        private void WriteProjectDependencies(List<Dependency> dependencies, IDictionary<string, int> projectMap)
         {
             var projectDependencyIntCounter = new IntCounter(-1);
             var projectDependencies = dependencies
