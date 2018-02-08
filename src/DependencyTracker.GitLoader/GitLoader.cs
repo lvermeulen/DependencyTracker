@@ -74,7 +74,7 @@ namespace DependencyTracker.GitLoader
                     UseShellExecute = false,
                     FileName = _config.PathToGit ?? @"C:\Program Files\Git\bin\git.exe",
                     Arguments = $"clone {repositoryCloneUrl} {targetFolder}{shallowClone}",
-                    CreateNoWindow = true
+                    CreateNoWindow = false
                 };
 
                 process.Start();
