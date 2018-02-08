@@ -26,7 +26,8 @@ namespace DependencyTrackerConsole
                 CloneBaseFolder = clonePath,
                 UserName = options.UserName,
                 Password = options.Password,
-                RepositoryCloneUrls = cloneUrls
+                RepositoryCloneUrls = cloneUrls,
+                ShallowClone = true
             };
 
             Console.WriteLine($"Starting git clone operation on {cloneUrls.Length} repositories...");
