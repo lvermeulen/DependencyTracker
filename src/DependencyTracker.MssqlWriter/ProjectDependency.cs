@@ -21,5 +21,8 @@ namespace DependencyTracker.MssqlWriter
 
         [Column("targetframework")]
         public string TargetFramework { get; set; }
+
+        [Column("type")]
+        public string Type { get; set; }
     }
 }

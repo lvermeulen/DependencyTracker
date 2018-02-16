@@ -62,9 +62,9 @@ namespace DependencyTracker.NpmReader
                 .Select(x => new Dependency
                 {
                     ProjectName = projectName,
-                    DependencyId = x.Key,
-                    DependencyVersion = Clean(x.Value),
-                    DependencyFramework = null
+                    Id = x.Key,
+                    Version = Clean(x.Value),
+                    Framework = null
                 });
 
             progress?.Invoke();

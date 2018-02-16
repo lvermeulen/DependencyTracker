@@ -32,7 +32,7 @@ namespace DependencyTracker.MssqlWriter
         {
             var projectIntCounter = new IntCounter(-1);
             var projects = dependencies
-                .SelectMany(x => new List<string> { x.ProjectName, x.DependencyId })
+                .SelectMany(x => new List<string> { x.ProjectName, x.Id })
                 .Distinct()
                 .Select(x => new Project
                 {
@@ -57,9 +57,10 @@ namespace DependencyTracker.MssqlWriter
                 {
                     Id = projectDependencyIntCounter.Next(),
                     ProjectFromId = projectMap[x.ProjectName],
-                    ProjectToId = projectMap[x.DependencyId],
-                    Version = x.DependencyVersion,
-                    TargetFramework = x.DependencyFramework
+                    ProjectToId = projectMap[x.Id],
+                    Version = x.Version,
+                    TargetFramework = x.Framework,
+                    Type = x.Type.ToString()
                 });
 
             using (var bulkWriter = new BulkWriter<ProjectDependency>(_connectionString))

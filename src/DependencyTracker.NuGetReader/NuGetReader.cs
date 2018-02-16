@@ -63,9 +63,9 @@ namespace DependencyTracker.NuGetReader
                 .Select(x => new Dependency
                 {
                     ProjectName = projectName,
-                    DependencyId = x?.Attribute("Include")?.Value,
-                    DependencyVersion = x?.Attribute("Version")?.Value,
-                    DependencyFramework = null
+                    Id = x?.Attribute("Include")?.Value,
+                    Version = x?.Attribute("Version")?.Value,
+                    Framework = null
                 }) ?? GetPackagesConfigDependencies(projectName, fileInfo.Directory);
 
             progress?.Invoke();
@@ -91,9 +91,9 @@ namespace DependencyTracker.NuGetReader
                 .Select(x => new Dependency
                 {
                     ProjectName = projectName,
-                    DependencyId = x?.Attribute("id")?.Value,
-                    DependencyVersion = x?.Attribute("version")?.Value,
-                    DependencyFramework = x?.Attribute("targetFramework")?.Value
+                    Id = x?.Attribute("id")?.Value,
+                    Version = x?.Attribute("version")?.Value,
+                    Framework = x?.Attribute("targetFramework")?.Value
                 });
 
             return results;
