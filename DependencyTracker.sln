@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.NpmReader
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.NuGetReader", "src\DependencyTracker.NuGetReader\DependencyTracker.NuGetReader.csproj", "{C24BDC52-4828-4039-BEF7-8F3068C008DE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.LibManReader", "src\DependencyTracker.LibManReader\DependencyTracker.LibManReader.csproj", "{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{C24BDC52-4828-4039-BEF7-8F3068C008DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C24BDC52-4828-4039-BEF7-8F3068C008DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C24BDC52-4828-4039-BEF7-8F3068C008DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

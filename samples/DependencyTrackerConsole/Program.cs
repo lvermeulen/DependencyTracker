@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using DependencyTracker.GitLoader;
+using DependencyTracker.LibManReader;
 using DependencyTracker.MssqlWriter;
 using DependencyTracker.NpmReader;
 using DependencyTracker.NuGetReader;
@@ -34,6 +35,7 @@ namespace DependencyTrackerConsole
             {
                 if (!loader.Success)
                 {
+                    Console.WriteLine("Loader failed to load; exiting");
                     return 1;
                 }
 
@@ -46,7 +48,13 @@ namespace DependencyTrackerConsole
                 Console.WriteLine($"Reading npm dependencies for {npmReader.Count} projects...");
                 var npmDependencies = npmReader.Read();
 
-                var dependencies = nugetDependencies.Union(npmDependencies);
+                var libManReader = new LibManReader(loader.Location);
+                Console.WriteLine($"Reading libman dependencies for {libManReader.Count} projects...");
+                var libManDependencies = libManReader.Read();
+
+                var dependencies = nugetDependencies
+                    .Union(npmDependencies)
+                    .Union(libManDependencies);
 
                 // write
                 Console.WriteLine("Writing dependencies to database...");

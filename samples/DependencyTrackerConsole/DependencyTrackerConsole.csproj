@@ -68,6 +68,10 @@
       <Project>{27befeaf-c092-4687-9930-75aaf1a5536e}</Project>
       <Name>DependencyTracker.GitLoader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyTracker.LibManReader\DependencyTracker.LibManReader.csproj">
+      <Project>{59cf448a-ac7c-4e6e-b7c3-182f087f2d07}</Project>
+      <Name>DependencyTracker.LibManReader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\DependencyTracker.MssqlWriter\DependencyTracker.MssqlWriter.csproj">
       <Project>{10ea5432-4a13-4783-a95f-ec90f7930e6e}</Project>
       <Name>DependencyTracker.MssqlWriter</Name>
