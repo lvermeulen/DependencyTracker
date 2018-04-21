@@ -36,6 +36,11 @@ namespace DependencyTracker.GitLoader
 
         public void Dispose()
         {
+            if (_config.DoNotDeleteRepositoriesOnDispose)
+            {
+                return;
+            }
+
             if (!Directory.Exists(_config.CloneBaseFolder))
             {
                 return;
@@ -56,6 +61,9 @@ namespace DependencyTracker.GitLoader
         {
             var repositoryUri = new Uri(repositoryCloneUrl);
             string targetFolder = Path.Combine(_config.CloneBaseFolder, StripInvalidChars(repositoryUri.LocalPath));
+            string shallowClone = _config.ShallowClone
+                ? " --depth 1"
+                : "";
 
             using (var process = new System.Diagnostics.Process())
             {
@@ -65,8 +73,8 @@ namespace DependencyTracker.GitLoader
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     FileName = _config.PathToGit ?? @"C:\Program Files\Git\bin\git.exe",
-                    Arguments = $"clone {repositoryCloneUrl} {targetFolder} --depth 1",
-                    CreateNoWindow = false
+                    Arguments = $"clone {repositoryCloneUrl} {targetFolder}{shallowClone}",
+                    CreateNoWindow = true
                 };
 
                 process.Start();
