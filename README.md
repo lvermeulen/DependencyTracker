@@ -7,7 +7,7 @@ DependencyTracker is a library for tracking NuGet and npm dependencies between p
 
 ## Features
 * Load dependencies by location or git repo.
-* Read dependencies from **NuGet** packages.config and **npm** package.json files
+* Read dependencies from **NuGet** packages.config, **npm** package.json and **LibMan** libman.json files
 * Write dependencies to a database
 * Extensible: write your own loader, reader and writer
 
