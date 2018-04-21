@@ -67,9 +67,9 @@ namespace DependencyTracker.LibManReader
                     return new Dependency
                     {
                         ProjectName = projectName,
-                        DependencyId = name,
-                        DependencyVersion = version,
-                        DependencyFramework = null
+                        Id = name,
+                        Version = version,
+                        Framework = null
                     };
                 });
 
