@@ -3,6 +3,8 @@
     public enum DependencyTypes
     {
         NuGet,
-        Npm
+        Npm,
+        LibMan,
+        GemFile
     }
 }

@@ -39,18 +39,23 @@ namespace DependencyTracker.LibManReader
             return results;
         }
 
-        private string GetProjectName(FileSystemInfo fileInfo)
+        private string GetProjectName(FileSystemInfo fileSystemInfo)
         {
-            var parentFolder = Path.GetDirectoryName(fileInfo.FullName);
+            string parentFolder = Path.GetDirectoryName(fileSystemInfo.FullName);
+            if (parentFolder == null)
+            {
+                throw new InvalidOperationException("Parent folder is null");
+            }
+
             return new DirectoryInfo(parentFolder)
                 .EnumerateFiles("*.csproj")
                 .Select(x => Path.GetFileNameWithoutExtension(x.Name))
                 .FirstOrDefault();
         }
 
-        private IEnumerable<Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
+        private IEnumerable<Dependency> GetDependencies(string projectName, FileSystemInfo fileSystemInfo, Action progress = null)
         {
-            string json = File.ReadAllText(fileInfo.FullName);
+            string json = File.ReadAllText(fileSystemInfo.FullName);
             var libman = JsonConvert.DeserializeObject<dynamic>(json);
             string dependenciesNode = Convert.ToString(libman.libraries);
             if (string.IsNullOrEmpty(dependenciesNode))
@@ -69,7 +74,8 @@ namespace DependencyTracker.LibManReader
                         ProjectName = projectName,
                         Id = name,
                         Version = version,
-                        Framework = null
+                        Framework = null,
+                        Type = DependencyTypes.LibMan
                     };
                 });
 

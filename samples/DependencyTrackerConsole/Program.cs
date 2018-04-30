@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DependencyTracker.Core;
+using DependencyTracker.GemFileReader;
 using DependencyTracker.GitLoader;
 using DependencyTracker.LibManReader;
 using DependencyTracker.MssqlWriter;
@@ -41,21 +44,10 @@ namespace DependencyTrackerConsole
                 }
 
                 // read
-                var nuGetReader = new NuGetReader(loader.Location);
-                Console.WriteLine($"Reading nuget dependencies for {nuGetReader.Count} projects...");
-                var nugetDependencies = nuGetReader.Read().ToList();
-
-                var npmReader = new NpmReader(loader.Location);
-                Console.WriteLine($"Reading npm dependencies for {npmReader.Count} projects...");
-                var npmDependencies = npmReader.Read();
-
-                var libManReader = new LibManReader(loader.Location);
-                Console.WriteLine($"Reading libman dependencies for {libManReader.Count} projects...");
-                var libManDependencies = libManReader.Read();
-
-                var dependencies = nugetDependencies
-                    .Union(npmDependencies)
-                    .Union(libManDependencies);
+                var dependencies = ReadDependencies(new NuGetReader(loader.Location))
+                    .Union(ReadDependencies(new NpmReader(loader.Location))
+                    .Union(ReadDependencies(new LibManReader(loader.Location))
+                    .Union(ReadDependencies(new GemFileReader(loader.Location)))));
 
                 // write
                 Console.WriteLine("Writing dependencies to database...");
@@ -67,6 +59,17 @@ namespace DependencyTrackerConsole
 
             Console.WriteLine("Done.");
             return 0;
+        }
+
+        private static IEnumerable<Dependency> ReadDependencies(IDependencyReader dependencyReader)
+        {
+            if (dependencyReader == null)
+            {
+                throw new ArgumentNullException(nameof(dependencyReader));
+            }
+
+            Console.WriteLine($"Reading dependencies for {dependencyReader.Count} projects...");
+            return dependencyReader.Read();
         }
 
         private static Options ParseCommandLine(string[] args)

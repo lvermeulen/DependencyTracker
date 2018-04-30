@@ -64,6 +64,10 @@
       <Project>{eb35e5bc-a8b9-4d4d-8f46-f5d10dd5b58c}</Project>
       <Name>DependencyTracker.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\DependencyTracker.GemFileReader\DependencyTracker.GemFileReader.csproj">
+      <Project>{b17809af-7838-46a9-95b8-e1a94d656ecc}</Project>
+      <Name>DependencyTracker.GemFileReader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\DependencyTracker.GitLoader\DependencyTracker.GitLoader.csproj">
       <Project>{27befeaf-c092-4687-9930-75aaf1a5536e}</Project>
       <Name>DependencyTracker.GitLoader</Name>

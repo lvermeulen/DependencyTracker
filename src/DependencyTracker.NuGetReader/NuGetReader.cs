@@ -65,7 +65,8 @@ namespace DependencyTracker.NuGetReader
                     ProjectName = projectName,
                     Id = x?.Attribute("Include")?.Value,
                     Version = x?.Attribute("Version")?.Value,
-                    Framework = null
+                    Framework = null,
+                    Type = DependencyTypes.NuGet
                 }) ?? GetPackagesConfigDependencies(projectName, fileInfo.Directory);
 
             progress?.Invoke();

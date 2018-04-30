@@ -39,17 +39,17 @@ namespace DependencyTracker.NpmReader
             return results;
         }
 
-        private string GetProjectName(FileInfo fileInfo)
+        private string GetProjectName(FileSystemInfo fileSystemInfo)
         {
-            string json = File.ReadAllText(fileInfo.FullName);
+            string json = File.ReadAllText(fileSystemInfo.FullName);
             var package = JsonConvert.DeserializeObject<dynamic>(json);
 
             return Convert.ToString(package.name);
         }
 
-        private IEnumerable<Dependency> GetDependencies(string projectName, FileInfo fileInfo, Action progress = null)
+        private IEnumerable<Dependency> GetDependencies(string projectName, FileSystemInfo fileSystemInfo, Action progress = null)
         {
-            string json = File.ReadAllText(fileInfo.FullName);
+            string json = File.ReadAllText(fileSystemInfo.FullName);
             var package = JsonConvert.DeserializeObject<dynamic>(json);
             string dependenciesNode = Convert.ToString(package.dependencies);
             if (string.IsNullOrEmpty(dependenciesNode))
@@ -57,14 +57,15 @@ namespace DependencyTracker.NpmReader
                 return Enumerable.Empty<Dependency>();
             }
 
-            Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(dependenciesNode);
+            var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(dependenciesNode);
             var results = dict
                 .Select(x => new Dependency
                 {
                     ProjectName = projectName,
                     Id = x.Key,
                     Version = Clean(x.Value),
-                    Framework = null
+                    Framework = null,
+                    Type = DependencyTypes.Npm
                 });
 
             progress?.Invoke();

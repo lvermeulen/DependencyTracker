@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.NuGetRead
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.LibManReader", "src\DependencyTracker.LibManReader\DependencyTracker.LibManReader.csproj", "{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.GemFileReader", "src\DependencyTracker.GemFileReader\DependencyTracker.GemFileReader.csproj", "{B17809AF-7838-46A9-95B8-E1A94D656ECC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CF448A-AC7C-4E6E-B7C3-182F087F2D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B17809AF-7838-46A9-95B8-E1A94D656ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B17809AF-7838-46A9-95B8-E1A94D656ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B17809AF-7838-46A9-95B8-E1A94D656ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B17809AF-7838-46A9-95B8-E1A94D656ECC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
