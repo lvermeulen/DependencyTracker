@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using DbUp;
 using DependencyTracker.Core;
 using DependencyTracker.GemFileReader;
 using DependencyTracker.GitLoader;
@@ -51,6 +53,10 @@ namespace DependencyTrackerConsole
 
                 // write
                 Console.WriteLine("Writing dependencies to database...");
+                if (!CreateDatabase(options.ConnectionString))
+                {
+                    return -1;
+                }
                 var writer = new MssqlWriter(options.ConnectionString);
                 writer.Write(dependencies);
 
@@ -109,6 +115,30 @@ namespace DependencyTrackerConsole
         {
             Console.WriteLine($"Usage: {nameof(DependencyTrackerConsole)} --userName=<git username> --password=<git password> --cloneUrlsFile=<path to file containing git repo urls to clone> --clonePath=<root location of cloned repos> --connectionString=<database connection string>");
             Environment.Exit(1);
+        }
+
+        private static bool CreateDatabase(string connectionString)
+        {
+            EnsureDatabase.For.SqlDatabase(connectionString);
+            var result = DeployChanges.To
+                .SqlDatabase(connectionString)
+                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                .LogToConsole()
+                .Build()
+                .PerformUpgrade();
+
+            if (result.Successful)
+            {
+                return true;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(result.Error);
+            Console.ResetColor();
+#if DEBUG
+            Console.ReadLine();
+#endif
+            return false;
         }
     }
 }

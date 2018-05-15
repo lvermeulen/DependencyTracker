@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dbup-core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=4b419c53bdfd4cbf, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\dbup-core.4.1.0\lib\net45\dbup-core.dll</HintPath>
+    </Reference>
+    <Reference Include="dbup-sqlserver, Version=4.1.0.0, Culture=neutral, PublicKeyToken=4b419c53bdfd4cbf, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\dbup-sqlserver.4.1.0\lib\net35\dbup-sqlserver.dll</HintPath>
+    </Reference>
     <Reference Include="FluentCommandLineParser, Version=1.5.0.20, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentCommandLineParser.1.5.0.20-commands\lib\net35\FluentCommandLineParser.dll</HintPath>
     </Reference>
@@ -57,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\DependencyTracker.Core\DependencyTracker.Core.csproj">
@@ -88,6 +96,11 @@
       <Project>{c24bdc52-4828-4039-bef7-8f3068c008de}</Project>
       <Name>DependencyTracker.NuGetReader</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script 0001 - Create Table project.sql" />
+    <EmbeddedResource Include="Scripts\Script 0002 - Create Table projectdependency.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets')" />
