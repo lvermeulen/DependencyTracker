@@ -5,7 +5,7 @@ using DependencyTracker.Core;
 
 namespace DependencyTracker.GitLoader
 {
-    public class GitLoader : IDependencyLoader
+    public sealed class GitLoader : IDependencyLoader
     {
         private readonly GitConfig _config;
 
