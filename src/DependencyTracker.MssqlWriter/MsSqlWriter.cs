@@ -28,7 +28,7 @@ namespace DependencyTracker.MssqlWriter
             WriteProjectDependencies(dependencyList, projectMap);
         }
 
-        private IDictionary<string, int> WriteProjects(List<Dependency> dependencies)
+        private IDictionary<string, int> WriteProjects(IEnumerable<Dependency> dependencies)
         {
             var projectIntCounter = new IntCounter(-1);
             var projects = dependencies
@@ -49,7 +49,7 @@ namespace DependencyTracker.MssqlWriter
             return projects.ToDictionary(x => x.Name, x => x.Id);
         }
 
-        private void WriteProjectDependencies(List<Dependency> dependencies, IDictionary<string, int> projectMap)
+        private void WriteProjectDependencies(IEnumerable<Dependency> dependencies, IDictionary<string, int> projectMap)
         {
             var projectDependencyIntCounter = new IntCounter(-1);
             var projectDependencies = dependencies
