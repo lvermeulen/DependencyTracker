@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentCommandLineParser-netstandard" Version="1.4.3.13" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DependencyTracker.Core\DependencyTracker.Core.csproj" />
+    <ProjectReference Include="..\..\src\DependencyTracker.DotWriter\DependencyTracker.DotWriter.csproj" />
+    <ProjectReference Include="..\..\src\DependencyTracker.GitLoader\DependencyTracker.GitLoader.csproj" />
+    <ProjectReference Include="..\..\src\DependencyTracker.LocationLoader\DependencyTracker.LocationLoader.csproj" />
+    <ProjectReference Include="..\..\src\DependencyTracker.NuGetReader\DependencyTracker.NuGetReader.csproj" />
+  </ItemGroup>
+
+</Project>
