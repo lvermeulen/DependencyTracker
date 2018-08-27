@@ -23,7 +23,7 @@ namespace DependencyTracker.NuGetReader
         {
             var results = new List<Dependency>();
 
-            foreach (var fileInfo in _fileInfos)
+            foreach (var fileInfo in _fileInfos.Where(x => !x.Extension.EndsWith("vdproj", StringComparison.OrdinalIgnoreCase)))
             {
                 string projectName = GetProjectName(fileInfo.FullName);
                 if (projectName == null)

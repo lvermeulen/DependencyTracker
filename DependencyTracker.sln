@@ -40,7 +40,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.GemFileRe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyTracker.DotWriter", "src\DependencyTracker.DotWriter\DependencyTracker.DotWriter.csproj", "{C202414E-60DD-483C-BF9D-C36C15EB168B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyGraphGenerator", "samples\DependencyGraphGenerator\DependencyGraphGenerator.csproj", "{5B4FBEEE-827D-4FAA-A5D8-6BA29841E574}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraphGenerator", "samples\DependencyGraphGenerator\DependencyGraphGenerator.csproj", "{5B4FBEEE-827D-4FAA-A5D8-6BA29841E574}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyTracker.NuGetReader.Tests", "test\DependencyTracker.NuGetReader.Tests\DependencyTracker.NuGetReader.Tests.csproj", "{06627582-F703-44D3-ADCD-89D4E63C48ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AFCF2473-12C8-4447-8455-364FE920B643}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +94,10 @@ Global
 		{5B4FBEEE-827D-4FAA-A5D8-6BA29841E574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B4FBEEE-827D-4FAA-A5D8-6BA29841E574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B4FBEEE-827D-4FAA-A5D8-6BA29841E574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06627582-F703-44D3-ADCD-89D4E63C48ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06627582-F703-44D3-ADCD-89D4E63C48ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06627582-F703-44D3-ADCD-89D4E63C48ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06627582-F703-44D3-ADCD-89D4E63C48ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +105,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{05A90B6A-B206-42EC-9FBE-EBF7C8C54DEF} = {820142E6-2C1E-4F07-A4AE-58015C343026}
 		{5B4FBEEE-827D-4FAA-A5D8-6BA29841E574} = {820142E6-2C1E-4F07-A4AE-58015C343026}
+		{06627582-F703-44D3-ADCD-89D4E63C48ED} = {AFCF2473-12C8-4447-8455-364FE920B643}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B95C67B7-FD2C-46B7-9743-DF96F220E49B}
